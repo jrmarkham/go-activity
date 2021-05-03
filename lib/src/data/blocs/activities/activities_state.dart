@@ -8,7 +8,7 @@ abstract class ActivitiesBlocState extends Equatable {
   List<Object> get props => [activities];
 }
 
-class ActivitiesBlocStateInit extends ActivitiesBlocState {}
+class ActivitiesBlocStateInitial extends ActivitiesBlocState {}
 
 class ActivitiesBlocStateLoaded extends ActivitiesBlocState {
   final List<ActivityModel> activities;

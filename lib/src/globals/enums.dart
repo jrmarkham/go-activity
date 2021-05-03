@@ -1,6 +1,7 @@
 
 // UI
-enum NavScreens {home, add, edit}
+// enum NavScreens {home, add, edit}
+enum NavDisplay {list, detail}
 
 // FORMS
 enum FieldState { empty, invalid, valid }

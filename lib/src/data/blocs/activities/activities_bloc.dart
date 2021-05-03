@@ -10,7 +10,7 @@ part 'activities_event.dart';
 part 'activities_state.dart';
 
 class ActivitiesBloc extends Bloc<ActivitiesBlocEvent, ActivitiesBlocState> {
-  ActivitiesBloc() : super(ActivitiesBlocStateInit());
+  ActivitiesBloc() : super(ActivitiesBlocStateInitial());
 
   final BaseActivityServices _activityServices = ActivityServices();
 
