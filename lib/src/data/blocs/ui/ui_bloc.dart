@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:go_activity_app/src/data/models/activity.dart';
 import 'package:go_activity_app/src/globals.dart';
 
 part 'ui_event.dart';
@@ -16,14 +17,34 @@ class UIBloc extends Bloc<UIBlocEvent, UIBlocState> {
     UIBlocEvent event,
   ) async* {
     if(event is UIBlocEventUpdate) {
+      debugPrint('UIBlocEventUpdate');
       yield UIBlocStateUpdate(state,
           navDisplay: event.navDisplay ?? state.navDisplay,
-          navIdx: event.navDisplay ?? state.navIdx
+          navIdx: event.navIdx ?? state.navIdx
       );
+    }
+
+    if(event is UIBlocEventAddActivity) {
+      debugPrint('UIBlocEventAddActivity');
+
+     yield UIBlocStateAddActivity(state, event.activityModel);
+    }
+
+    if(event is UIBlocEventUpdateActivity) {
+     yield UIBlocStateUpdateActivity(state, event.activityModel);
+    }
+
+
+    if(event is UIBlocEventRemoveActivity) {
+      yield UIBlocStateRemoveActivity(state, event.id);
     }
 
   }
 
-  void updateNavDisplay(NavDisplay navDisplay, {int navIdx = 0}) => add
-    (UIBlocEventUpdate(navDisplay: navDisplay, navIdx: navIdx));
+  void updateUI({NavDisplay navDisplay, int navIdx}) =>  add(UIBlocEventUpdate(navDisplay: navDisplay, navIdx: navIdx));
+
+  void addActivity (ActivityModel activityModel) => add(UIBlocEventAddActivity(activityModel));
+  void updateActivity (ActivityModel activityModel) => add
+    (UIBlocEventUpdateActivity(activityModel));
+  void removeActivity (int id) => add(UIBlocEventRemoveActivity(id));
 }

@@ -17,12 +17,17 @@ class ActivitiesBlocEventAdd extends ActivitiesBlocEvent {
 }
 
 class ActivitiesBlocEventUpdate extends ActivitiesBlocEvent {
+  final ActivityModel activity;
+  ActivitiesBlocEventUpdate(this.activity);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [activity];
 }
 
 class ActivitiesBlocEventRemove extends ActivitiesBlocEvent {
+  final int id;
+  ActivitiesBlocEventRemove(this.id);
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [id];
 }

@@ -12,20 +12,20 @@ mixin FormValidationMixin {
     switch (type){
     ///  case FieldType.displayName: return _validDisplayName(field);
      // case FieldType.email: return _validEmailAddress(field);
-      default: return false;
+      default: return true;
     }
   }
 
-  bool _validDisplayName(String displayName) {
- // //   if(displayName.trim().length < getFieldMinLength(FieldType.displayName))
- //   return false;
- //    return true;
-  }
-
-
-  //
-  // bool _validEmailAddress(String email) {
-  //   if(email == null) return false;
-  //   return RegExp(_EMAIL_REG_EXP).hasMatch(email);
-  // }
+ //  bool _validDisplayName(String displayName) {
+ // // //   if(displayName.trim().length < getFieldMinLength(FieldType.displayName))
+ // //   return false;
+ // //    return true;
+ //  }
+ //
+ //
+ //  //
+ //  // bool _validEmailAddress(String email) {
+ //  //   if(email == null) return false;
+ //  //   return RegExp(_EMAIL_REG_EXP).hasMatch(email);
+ //  // }
 }
