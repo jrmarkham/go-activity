@@ -20,7 +20,8 @@ class UIBloc extends Bloc<UIBlocEvent, UIBlocState> {
       debugPrint('UIBlocEventUpdate');
       yield UIBlocStateUpdate(state,
           navDisplay: event.navDisplay ?? state.navDisplay,
-          navIdx: event.navIdx ?? state.navIdx
+          navIdx: event.navIdx ?? state.navIdx,
+          activityModel: event.activityModel ?? state.activityModel
       );
     }
 
@@ -31,20 +32,25 @@ class UIBloc extends Bloc<UIBlocEvent, UIBlocState> {
     }
 
     if(event is UIBlocEventUpdateActivity) {
+      debugPrint('UIBlocEventAddActivity');
+
      yield UIBlocStateUpdateActivity(state, event.activityModel);
     }
 
 
     if(event is UIBlocEventRemoveActivity) {
-      yield UIBlocStateRemoveActivity(state, event.id);
+
+      debugPrint('UIBlocEventRemoveActivity');
+
+      yield UIBlocStateRemoveActivity(state, event.idx);
     }
 
   }
 
-  void updateUI({NavDisplay navDisplay, int navIdx}) =>  add(UIBlocEventUpdate(navDisplay: navDisplay, navIdx: navIdx));
+  void updateUI({@required NavDisplay navDisplay, int navIdx, ActivityModel activityModel})
+    =>  add(UIBlocEventUpdate(navDisplay: navDisplay, navIdx: navIdx, activityModel: activityModel));
 
   void addActivity (ActivityModel activityModel) => add(UIBlocEventAddActivity(activityModel));
-  void updateActivity (ActivityModel activityModel) => add
-    (UIBlocEventUpdateActivity(activityModel));
-  void removeActivity (int id) => add(UIBlocEventRemoveActivity(id));
+  void updateActivity (ActivityModel activityModel) => add (UIBlocEventUpdateActivity(activityModel));
+  void removeActivity (int idx) => add(UIBlocEventRemoveActivity(idx));
 }

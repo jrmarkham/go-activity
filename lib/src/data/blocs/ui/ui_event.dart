@@ -7,10 +7,12 @@ abstract class UIBlocEvent extends Equatable {
 class UIBlocEventUpdate extends UIBlocEvent {
   final NavDisplay navDisplay;
   final int navIdx;
-  UIBlocEventUpdate({this.navDisplay, this.navIdx});
+  final ActivityModel activityModel;
+  UIBlocEventUpdate({@required this.navDisplay, this.navIdx, this
+      .activityModel});
 
   @override
-  List<Object> get props => [navDisplay, navIdx];
+  List<Object> get props => [navDisplay, navIdx, activityModel];
 }
 
 class UIBlocEventAddActivity extends UIBlocEvent {
@@ -30,9 +32,9 @@ class UIBlocEventUpdateActivity extends UIBlocEvent {
 }
 
 class UIBlocEventRemoveActivity extends UIBlocEvent {
-  final int id;
-  UIBlocEventRemoveActivity(this.id);
+  final int idx;
+  UIBlocEventRemoveActivity(this.idx);
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [idx];
 }

@@ -3,13 +3,15 @@ part of 'ui_bloc.dart';
 abstract class UIBlocState extends Equatable {
   final NavDisplay navDisplay;
   final int navIdx;
+  final ActivityModel activityModel;
 
-  UIBlocState(UIBlocState state, {NavDisplay navDisplay, int navIdx})
+  UIBlocState(UIBlocState state, {NavDisplay navDisplay, int navIdx,  ActivityModel activityModel})
       : this.navDisplay = navDisplay ?? state?.navDisplay ?? NavDisplay.wait,
-        this.navIdx = navIdx ?? state?.navIdx ?? 0;
+        this.navIdx = navIdx ?? state?.navIdx ?? 0,
+        this.activityModel = activityModel ?? state?.activityModel;
 
   @override
-  List<Object> get props => [navDisplay];
+  List<Object> get props => [navDisplay, navIdx, activityModel];
 }
 
 class UIBlocStateInitial extends UIBlocState {
@@ -23,11 +25,13 @@ class UIBlocStateUpdate extends UIBlocState {
   final UIBlocState state;
   final NavDisplay navDisplay;
   final int navIdx;
-  UIBlocStateUpdate(this.state, {@required this.navDisplay, @required this.navIdx}) :
+  final ActivityModel activityModel;
+  UIBlocStateUpdate(this.state, {@required this.navDisplay, @required this
+      .navIdx,  this.activityModel}) :
         super(state);
 
   @override
-  List<Object> get props => [state, navDisplay, navIdx];
+  List<Object> get props => [state, navDisplay, navIdx, activityModel];
 }
 
 
@@ -51,9 +55,9 @@ class UIBlocStateUpdateActivity extends UIBlocState {
 
 class UIBlocStateRemoveActivity extends UIBlocState {
   final UIBlocState state;
-  final int id;
-  UIBlocStateRemoveActivity(this.state, this.id): super(state);
+  final int idx;
+  UIBlocStateRemoveActivity(this.state, this.idx): super(state);
 
   @override
-  List<Object> get props => [state, id];
+  List<Object> get props => [state, idx];
 }

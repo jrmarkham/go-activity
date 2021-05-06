@@ -39,6 +39,22 @@ class _CoreAppState extends State<CoreApp> {
 
                 _activityBloc.addActivity(state.activityModel);
               }
+
+              if (state is UIBlocStateRemoveActivity) {
+
+                debugPrint('UIBlocStateRemoveActivity ${state.idx}');
+
+                _activityBloc.removeActivity(state.idx);
+              }
+
+              if (state is UIBlocStateUpdateActivity) {
+
+                debugPrint('UIBlocStateUpdateActivity ${state.activityModel}');
+
+                _activityBloc.updateActivity(state.activityModel);
+              }
+
+
             }),
         BlocListener<ActivitiesBloc, ActivitiesBlocState>(
             bloc: _activityBloc,
@@ -48,7 +64,9 @@ class _CoreAppState extends State<CoreApp> {
 
               if (state is ActivitiesBlocStateLoaded) {
                 debugPrint('loaded');
-                _uiBloc.updateUI(navDisplay: NavDisplay.list);
+                state.idx == null
+                  ? _uiBloc.updateUI(navDisplay: NavDisplay.list)
+                  : _uiBloc.updateUI(navDisplay: NavDisplay.detail, navIdx: state.idx);
               }
             }),
       ],
@@ -82,7 +100,14 @@ class _CoreAppState extends State<CoreApp> {
                             itemBuilder: (BuildContext context, int idx) {
                               final ActivityModel am =
                                   _activityBloc.state.activities[idx];
-                              return activityPageDisplay(am);
+                              final Function toggleRemove = () =>
+                                  _uiBloc.removeActivity(idx);
+                              final Function toggleUpdate = () =>
+                                  _uiBloc.updateUI(navDisplay: NavDisplay
+                                      .edit);
+
+                              return activityPageDisplay(activityModel: am,
+                                  toggleUpdate: toggleUpdate, toggleRemove: toggleRemove);
                             }),
                       ),
                       Align(
@@ -104,16 +129,32 @@ class _CoreAppState extends State<CoreApp> {
                     ],
                   );
                 case NavDisplay.add:
+                  final Function _submitAdd = (ActivityModel
+                  activityModel) => _uiBloc.addActivity(activityModel);
                   return Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       _listButton(),
                       Flexible(
                           fit: FlexFit.loose,
-                          child: ActivityForm(_uiBloc,
+                          child: ActivityForm(_submitAdd,
                               newId: _activityBloc.state.activities.length))
                     ],
                   );
+                case NavDisplay.edit:
+
+                  final Function _submitUpdate = (ActivityModel activityModel) => _uiBloc.updateActivity(activityModel);
+
+                  return Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      _listButton(),
+                      Flexible(
+                          fit: FlexFit.loose,
+                          child: ActivityForm(_submitUpdate, activityModel: uiState.activityModel))
+                    ],
+                  );
+
                 case NavDisplay.list:
                   return Column(
                     mainAxisSize: MainAxisSize.max,
@@ -125,11 +166,21 @@ class _CoreAppState extends State<CoreApp> {
                             itemBuilder: (BuildContext context, int idx) {
                               final ActivityModel am =
                                   _activityBloc.state.activities[idx];
+
                               final Function toggleDetails = () =>
                                   _uiBloc.updateUI(
                                       navDisplay: NavDisplay.detail,
                                       navIdx: idx);
-                              return activityCardDisplay(am, toggleDetails);
+                              if(am.isUserActivity) {
+                                final Function toggleRemove = (DismissDirection direction) =>
+                                    _uiBloc.removeActivity(idx);
+                                return dismissibleActivityCard(activityModel:
+                                am, toggleDisplay: toggleDetails,
+                                    toggleRemove: toggleRemove);
+                              }
+
+                              return activityCardDisplay(activityModel: am,
+                                  toggleDisplay: toggleDetails);
                             }),
                       ),
                       Align(
@@ -161,19 +212,6 @@ class _CoreAppState extends State<CoreApp> {
                   );
               }
             }),
-
-        // floatingActionButton: Padding(
-        //   padding: const EdgeInsets.all(50.0),
-        //   child: IconButton(
-        //     icon: Icon(
-        //       Icons.add_circle_outline,
-        //       size: 100.0,
-        //       color: Colors.blue,
-        //     ),
-        //     tooltip: 'add your own activity',
-        //     onPressed: () =>  _uiBloc.updateUI(navDisplay: NavDisplay.add),
-        //   ),
-        // ),
       ),
     );
   }

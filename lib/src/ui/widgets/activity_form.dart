@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_activity_app/src/data/blocs/form/form_bloc.dart';
-import 'package:go_activity_app/src/data/blocs/ui/ui_bloc.dart';
 import 'package:go_activity_app/src/data/models/activity.dart';
 import 'package:go_activity_app/src/data/models/form_field_element.dart';
 import 'package:go_activity_app/src/globals.dart';
 
 
 class ActivityForm extends StatefulWidget {
-  final UIBloc uiBloc;
+  final Function submit;
   final int newId;
   final ActivityModel activityModel;
 
-  ActivityForm(this.uiBloc, {this.newId, this.activityModel});
+  ActivityForm(this.submit, {this.newId, this.activityModel});
 
   @override
   _ActivityFormState createState() => _ActivityFormState();
@@ -35,10 +34,8 @@ class _ActivityFormState extends State<ActivityForm> {
 
   @override
   Widget build(BuildContext context) {
-    final Function _submit = (ActivityModel activityModel) =>
-    _isNew
-        ? widget.uiBloc.addActivity(activityModel)
-        : widget.uiBloc.updateActivity(activityModel);
+    final Function _submit = (ActivityModel activityModel) => widget.submit(activityModel);
+
 
     return Padding(
       padding: const EdgeInsets.all(15.0),

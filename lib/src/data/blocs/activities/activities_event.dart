@@ -25,9 +25,9 @@ class ActivitiesBlocEventUpdate extends ActivitiesBlocEvent {
 }
 
 class ActivitiesBlocEventRemove extends ActivitiesBlocEvent {
-  final int id;
-  ActivitiesBlocEventRemove(this.id);
+  final int idx;
+  ActivitiesBlocEventRemove(this.idx);
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [idx];
 }

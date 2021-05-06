@@ -12,14 +12,16 @@ class ActivitiesBlocStateInitial extends ActivitiesBlocState {}
 
 class ActivitiesBlocStateLoaded extends ActivitiesBlocState {
   final List<ActivityModel> activities;
-  ActivitiesBlocStateLoaded(this.activities);
+  final int idx;
+  ActivitiesBlocStateLoaded(this.activities, {this.idx});
 
   @override
-  List<Object> get props => [activities];
+  List<Object> get props => [activities, idx];
 }
 
 class ActivitiesBlocStateLoading extends ActivitiesBlocState {
   final List<ActivityModel> activities;
+
   ActivitiesBlocStateLoading(this.activities);
 
   @override
