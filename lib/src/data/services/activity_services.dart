@@ -69,7 +69,7 @@ class ActivityServices extends BaseActivityServices {
           location: 'location',
           description: 'description',
           imageUrl: 'imageUrl',
-          isUserActivity: false),
+          isUserActivity: false)
     ];
   }
 }

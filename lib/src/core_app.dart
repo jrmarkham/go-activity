@@ -72,7 +72,7 @@ class _CoreAppState extends State<CoreApp> {
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Go Activity App::::::: '),
+          title: Text('::::::: Go Activity App :::::::'),
         ),
         // BLOC // with activity list
         body: BlocBuilder<UIBloc, UIBlocState>(
@@ -88,7 +88,6 @@ class _CoreAppState extends State<CoreApp> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       _listButton(),
-                      Text('Go Activity App::::::: ${uiState.navDisplay} '),
                       Flexible(
                         fit: FlexFit.loose,
                         child: PageView.builder(
@@ -159,7 +158,6 @@ class _CoreAppState extends State<CoreApp> {
                   return Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Text('Go Activity App::::::: ${uiState.navDisplay} '),
                       Expanded(
                         child: ListView.builder(
                             itemCount: _activityBloc.state.activities.length,

@@ -19,7 +19,8 @@ class ActivitiesBloc extends Bloc<ActivitiesBlocEvent, ActivitiesBlocState> {
   Stream<ActivitiesBlocState> mapEventToState(
       ActivitiesBlocEvent event,
   ) async* {
-    if(event is ActivitiesBlocEventLoad) {
+
+     if(event is ActivitiesBlocEventLoad) {
       yield ActivitiesBlocStateLoaded(_activityServices.getActivities());
     }
 
@@ -62,7 +63,6 @@ class ActivitiesBloc extends Bloc<ActivitiesBlocEvent, ActivitiesBlocState> {
   }
 
   void getActivityData() => add(ActivitiesBlocEventLoad());
-
   void addActivity(ActivityModel activity) => add(ActivitiesBlocEventAdd(activity));
   void updateActivity(ActivityModel activity) => add(ActivitiesBlocEventUpdate(activity));
   void removeActivity(int idx) => add(ActivitiesBlocEventRemove(idx));
