@@ -7,13 +7,13 @@ import 'package:go_activity_app/src/globals.dart';
 
 Future<void> main() async {
   Globals.initGlobal().then((_) {
-      runApp(MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: Globals.title,
-          home: MultiBlocProvider(providers: [
-            BlocProvider<UIBloc>(create: (BuildContext context) => UIBloc()),
-            BlocProvider<ActivitiesBloc>(create: (BuildContext context) => ActivitiesBloc()),
-          ], child:CoreApp())
-            ));
-    });
+    runApp(MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: Globals.title,
+        home: MultiBlocProvider(providers: [
+          BlocProvider<UIBloc>(create: (BuildContext context) => UIBloc()),
+          BlocProvider<ActivitiesBloc>(
+              create: (BuildContext context) => ActivitiesBloc()),
+        ], child: CoreApp())));
+  });
 }

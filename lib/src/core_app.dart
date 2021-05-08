@@ -32,35 +32,21 @@ class _CoreAppState extends State<CoreApp> {
         BlocListener<UIBloc, UIBlocState>(
             bloc: _uiBloc,
             listener: (BuildContext context, UIBlocState state) {
-              debugPrint('BlocListener UIBlocState ${state.toString()}');
               if (state is UIBlocStateAddActivity) {
-
-                debugPrint('UIBlocStateAddActivity ${state.activityModel}');
-
                 _activityBloc.addActivity(state.activityModel);
               }
 
               if (state is UIBlocStateRemoveActivity) {
-
-                debugPrint('UIBlocStateRemoveActivity ${state.idx}');
-
                 _activityBloc.removeActivity(state.idx);
               }
 
               if (state is UIBlocStateUpdateActivity) {
-
-                debugPrint('UIBlocStateUpdateActivity ${state.activityModel}');
-
                 _activityBloc.updateActivity(state.activityModel);
               }
-
-
             }),
         BlocListener<ActivitiesBloc, ActivitiesBlocState>(
             bloc: _activityBloc,
             listener: (BuildContext context, ActivitiesBlocState state) {
-
-              debugPrint('BlocListener ActivitiesBlocState ${state.toString()}');
 
               if (state is ActivitiesBlocStateLoaded) {
                 debugPrint('loaded');
@@ -78,9 +64,6 @@ class _CoreAppState extends State<CoreApp> {
         body: BlocBuilder<UIBloc, UIBlocState>(
             bloc: _uiBloc,
             builder: (BuildContext context, UIBlocState uiState) {
-
-              debugPrint('BlocBuilder UIBlocState ${uiState.toString()}');
-
 
               switch (uiState.navDisplay) {
                 case NavDisplay.detail:
