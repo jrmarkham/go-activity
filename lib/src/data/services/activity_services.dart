@@ -20,7 +20,7 @@ class ActivityServices extends BaseActivityServices {
           title: 'Let\'s Go to Egypt',
           date: 'October 25, 2007',
           location: 'Cairo, Egypt',
-          description: EGYPT,
+          description: EGYPT_DESCRIPTION,
           imageUrl: 'https://sandbox.markhamenterprises.com/go_app/egypt.jpg',
           isUserActivity: false),
       ActivityModel(
@@ -28,7 +28,7 @@ class ActivityServices extends BaseActivityServices {
           title: 'School Halloween',
           date: 'October 31, 2019',
           location: 'Peck Slip, New York, NY USA',
-          description: HALLOWEEN,
+          description: HALLOWEEN_DESCRIPTION,
           imageUrl: 'https://sandbox.markhamenterprises.com/go_app/halloween.jpg',
           isUserActivity: false),
       ActivityModel(
@@ -36,15 +36,15 @@ class ActivityServices extends BaseActivityServices {
           title: 'Greece See the Ancient World',
           date: 'September 20, 2009',
           location: 'location',
-          description: GREECE,
+          description: GREECE_DESCRIPTION,
           imageUrl: 'https://sandbox.markhamenterprises.com/go_app/greece.jpg',
           isUserActivity: false),
       ActivityModel(
           id: 3,
           title: 'Visit Moscow Russia',
-          date: 'date',
+          date: 'On a Tuesday . . . ',
           location: 'Moscow, Russia',
-          description: MOSCOW,
+          description: MOSCOW_DESCRIPTION,
           imageUrl: 'https://sandbox.markhamenterprises.com/go_app/moscow.jpg',
           isUserActivity: false),
       ActivityModel(
@@ -52,7 +52,7 @@ class ActivityServices extends BaseActivityServices {
           title: 'New Zealand, Hang out in a Hobbit Hole',
           date: 'November 12, 2006',
           location: 'New Zealand',
-          description: NEW_ZEALAND,
+          description: NEW_ZEALAND_DESCRIPTION,
           imageUrl: 'https://sandbox.markhamenterprises.com/go_app/newzealand'
               '.jpg',
           isUserActivity: false),
@@ -61,7 +61,7 @@ class ActivityServices extends BaseActivityServices {
           title: 'See Sunny Spain',
           date: 'March 21, 2010',
           location: 'Madrid, Spain',
-          description: SPAIN,
+          description: SPAIN_DESCRIPTION,
           imageUrl: 'https://sandbox.markhamenterprises.com/go_app/spain.jpg',
           isUserActivity: false),
       ActivityModel(
@@ -69,7 +69,7 @@ class ActivityServices extends BaseActivityServices {
           title: 'Merry Ole England',
           date: 'September 12, 2002',
           location: 'Stone Henge England',
-          description: STONE_HENGE,
+          description: STONE_HENGE_DESCRIPTION,
           imageUrl:'https://sandbox.markhamenterprises.com/go_app/england.jpg',
           isUserActivity: false)
     ];
