@@ -36,9 +36,6 @@ Widget activityCardDisplay(
             child: _getImage(activityModel.imageUrl),
           ),
 
-
-
-
           onTap: toggleDisplay,
         ));
 
@@ -60,7 +57,7 @@ Widget activityPageDisplay(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Stack (
+            Stack(
               children: [
                 _getImage(activityModel.imageUrl, width: 1000.0, height: 250.0),
                 if (activityModel.isUserActivity)
@@ -106,8 +103,8 @@ AutoSizeText _getDate(String date) =>
 AutoSizeText _getLocation(String location) =>
     AutoSizeText(location, style: TextStyle(fontSize: 20.0), maxLines: 1);
 
-Widget _getDescription(String description) =>
-    Expanded(child: Container(
+Widget _getDescription(String description) => Expanded(
+        child: Container(
       width: 1000.0,
       padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
@@ -117,14 +114,14 @@ Widget _getDescription(String description) =>
         ),
         borderRadius: BorderRadius.circular(12),
       ),
-
-      child: SingleChildScrollView(child: Text(description, style:
-TextStyle (fontSize: 20))),
+      child: SingleChildScrollView(
+          child: Text(description, style: TextStyle(fontSize: 20))),
     ));
 
 Widget _getImage(String url, {double width = 150, double height = 150}) {
   return FadeInImage(
-    imageErrorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+    imageErrorBuilder:
+        (BuildContext context, Object exception, StackTrace stackTrace) {
       print('Error Handler');
       return Container(
         width: width,
@@ -138,6 +135,4 @@ Widget _getImage(String url, {double width = 150, double height = 150}) {
     width: width,
     height: height,
   );
-
-
 }
