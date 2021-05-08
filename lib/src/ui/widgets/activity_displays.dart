@@ -32,9 +32,8 @@ Widget activityCardDisplay(
           contentPadding: const EdgeInsets.all(10.0),
           //  leading: CIRCLE IMAGE
           title: _getTitle(activityModel.title),
-          leading: CircleAvatar(
-            child: _getImage(activityModel.imageUrl),
-          ),
+          leading: _getImage(activityModel.imageUrl),
+
 
           onTap: toggleDisplay,
         ));
@@ -118,21 +117,18 @@ Widget _getDescription(String description) => Expanded(
           child: Text(description, style: TextStyle(fontSize: 20))),
     ));
 
-Widget _getImage(String url, {double width = 150, double height = 150}) {
-  return FadeInImage(
-    imageErrorBuilder:
-        (BuildContext context, Object exception, StackTrace stackTrace) {
-      print('Error Handler');
-      return Container(
-        width: width,
-        height: height,
-        child: Image.asset(goLogo),
-      );
-    },
-    placeholder: AssetImage(goLogo),
-    image: NetworkImage(url),
-    fit: BoxFit.cover,
+Widget _getImage(String url, {double width = 75, double height = 75}) {
+  return Container(
     width: width,
     height: height,
+
+    child: Image.network(
+      url,
+      errorBuilder:
+          (BuildContext context, Object exception, StackTrace stackTrace) {
+        print('Error Handler');
+        return Image.asset(goLogo);
+      },
+    ),
   );
 }
