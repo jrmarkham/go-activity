@@ -1,0 +1,1 @@
+final String goLogo = 'assets/images/go.jpg';

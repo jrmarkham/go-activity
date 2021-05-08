@@ -25,38 +25,26 @@ class ActivitiesBloc extends Bloc<ActivitiesBlocEvent, ActivitiesBlocState> {
     }
 
     if(event is ActivitiesBlocEventAdd) {
-      debugPrint('ActivitiesBlocEventAdd ${state.activities.toString()}');
       yield ActivitiesBlocStateLoading(state.activities);
       final List<ActivityModel> list  = state.activities;
       list.add(event.activity);
-
-      debugPrint('ActivitiesBlocEventAdd new list : ${list.toString()}');
       yield ActivitiesBlocStateLoaded(list);
     }
 
     if(event is ActivitiesBlocEventRemove) {
-      debugPrint('ActivitiesBlocEventRemove ${event.idx}');
       yield ActivitiesBlocStateLoading(state.activities);
       final List<ActivityModel> list  = state.activities;
 
       list.removeAt(event.idx);
-
-      debugPrint('ActivitiesBlocEventAdd new list : ${list.toString()}');
       yield ActivitiesBlocStateLoaded(list);
     }
 
     if(event is ActivitiesBlocEventUpdate) {
-      debugPrint('ActivitiesBlocEventUpdate ${event.activity}');
       yield ActivitiesBlocStateLoading(state.activities);
       final List<ActivityModel> list  = state.activities;
       final int idx = list.indexWhere((ActivityModel am) => am.id == event
           .activity.id);
-      // g
-
       list.replaceRange(idx,idx+1, [event.activity]);
-
-
-      debugPrint('ActivitiesBlocEventUpdate new list : ${list.toString()}');
       yield ActivitiesBlocStateLoaded(list, idx: idx);
     }
 

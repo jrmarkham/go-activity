@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:go_activity_app/src/globals.dart';
 import 'package:go_activity_app/src/globals/enums.dart';
 
@@ -14,37 +10,19 @@ mixin FormValidationMixin {
       case FieldType.title : return _validTitle(field);
       case FieldType.date: return _validDate(field);
       case FieldType.imageUrl : return _validURL(field);
-      case FieldType.description: return _validDescription(field);  
+      case FieldType.description: return _validDescription(field);
+      case FieldType.location: return _validLocation(field);
       default: return true;
     }
   }
 
-  bool _validTitle(String title) => title.trim().length >= getFieldMinLength
-    (FieldType.title);
+  bool _validTitle(String title) => getFieldMinLength(FieldType.title) < title.trim().length;
 
-  bool _validDate(String date) => date.trim().length >= getFieldMinLength
-    (FieldType.date);
+  bool _validDate(String date) => getFieldMinLength(FieldType.date) < date.trim().length;
 
-  bool _validURL(String url) => url.trim().length >= getFieldMinLength
-    (FieldType.imageUrl);
+  bool _validURL(String url) => getFieldMinLength(FieldType.imageUrl) < url.trim().length;
 
-  bool _validDescription(String description) => description.trim().length >=
-      getFieldMinLength (FieldType.description);
+  bool _validDescription(String description) => getFieldMinLength(FieldType.description) < description.trim().length;
 
-  bool validTitle(String title) => title.trim().length >= getFieldMinLength
-    (FieldType.title);
-
-
- //  bool _validDisplayName(String displayName) {
- // // //   if(displayName.trim().length < )
- // //   return false;
- // //    return true;
- //  }
- //
- //
- //  //
- //  // bool _validEmailAddress(String email) {
- //  //   if(email == null) return false;
- //  //   return RegExp(_EMAIL_REG_EXP).hasMatch(email);
- //  // }
+  bool _validLocation(String location) => getFieldMinLength(FieldType.location) < location.trim().length;
 }

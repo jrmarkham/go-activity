@@ -17,7 +17,6 @@ class UIBloc extends Bloc<UIBlocEvent, UIBlocState> {
     UIBlocEvent event,
   ) async* {
     if(event is UIBlocEventUpdate) {
-      debugPrint('UIBlocEventUpdate');
       yield UIBlocStateUpdate(state,
           navDisplay: event.navDisplay ?? state.navDisplay,
           navIdx: event.navIdx ?? state.navIdx,
@@ -26,22 +25,15 @@ class UIBloc extends Bloc<UIBlocEvent, UIBlocState> {
     }
 
     if(event is UIBlocEventAddActivity) {
-      debugPrint('UIBlocEventAddActivity');
-
      yield UIBlocStateAddActivity(state, event.activityModel);
     }
 
     if(event is UIBlocEventUpdateActivity) {
-      debugPrint('UIBlocEventAddActivity');
-
      yield UIBlocStateUpdateActivity(state, event.activityModel);
     }
 
 
     if(event is UIBlocEventRemoveActivity) {
-
-      debugPrint('UIBlocEventRemoveActivity');
-
       yield UIBlocStateRemoveActivity(state, event.idx);
     }
 

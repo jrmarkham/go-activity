@@ -4,7 +4,7 @@ import 'package:go_activity_app/src/data/blocs/form/form_bloc.dart';
 import 'package:go_activity_app/src/data/models/activity.dart';
 import 'package:go_activity_app/src/data/models/form_field_element.dart';
 import 'package:go_activity_app/src/globals.dart';
-
+import 'package:intl/intl.dart';
 
 class ActivityForm extends StatefulWidget {
   final Function submit;
@@ -87,14 +87,6 @@ class _ActivityFormState extends State<ActivityForm> {
                                   : null,
 
                           )
-
-
-                          // appButton(
-                          //     label: 'email login ',
-                          //     function: state.allVerified
-                          //         ? () => _submitEmail(state.formElements.first.dataElement.text)
-                          //         : null,
-                          //     size: ButtonSize.half),
                         ],
                       ),
                     ))
@@ -153,13 +145,18 @@ class _ActivityFormState extends State<ActivityForm> {
 
 
   List<FormFieldElementObject> _initNewActivity() {
+    final DateTime now = DateTime.now();
+    final DateFormat formatter = DateFormat('MMMM d, y');
+    final String formattedDate = formatter.format(now);
+
+
     final List<FormFieldElementObject> _startingForm = [];
     _startingForm.add(formFieldElementObject(idx: _startingForm.length,
         fieldType: FieldType.title, reqField: true));
     _startingForm.add(formFieldElementObject(idx: _startingForm.length,
         fieldType: FieldType.date,
         reqField: true,
-        startVal: DateTime.now().toString()));
+        startVal: formattedDate));
     _startingForm.add(formFieldElementObject(idx: _startingForm.length,
         fieldType: FieldType.location, reqField: true));
     _startingForm.add(formFieldElementObject(idx: _startingForm.length,
@@ -201,23 +198,8 @@ class _ActivityFormState extends State<ActivityForm> {
   }
 
 
-  // ActivityModel _getActivity(List<FormFieldElementObject> list) =>
-  //     ActivityModel(
-  //       id: _isNew ? widget.newId : widget.activityModel.id,
-  //       title: _getFormElementDataFromListByType(list, FieldType.title),
-  //       date: _getFormElementDataFromListByType(list, FieldType.date),
-  //       location: _getFormElementDataFromListByType(list, FieldType.location),
-  //       description: _getFormElementDataFromListByType(
-  //           list, FieldType.description),
-  //       imageUrl: _getFormElementDataFromListByType(list, FieldType.imageUrl),
-  //       isUserActivity: true
-  //   );
-
-
-  ActivityModel _getActivity(List<FormFieldElementObject> list) {
-
-
-    final ActivityModel am = ActivityModel(
+  ActivityModel _getActivity(List<FormFieldElementObject> list) =>
+      ActivityModel(
         id: _isNew ? widget.newId : widget.activityModel.id,
         title: _getFormElementDataFromListByType(list, FieldType.title),
         date: _getFormElementDataFromListByType(list, FieldType.date),
@@ -227,12 +209,4 @@ class _ActivityFormState extends State<ActivityForm> {
         imageUrl: _getFormElementDataFromListByType(list, FieldType.imageUrl),
         isUserActivity: true
     );
-
-    debugPrint ('new AM : ${am.toString()}');
-
-    return am;
-
-  }
-
-
 }
