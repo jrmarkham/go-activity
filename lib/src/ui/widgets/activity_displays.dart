@@ -31,7 +31,7 @@ Widget activityCardDisplay(
         child: ListTile(
           contentPadding: const EdgeInsets.all(10.0),
           //  leading: CIRCLE IMAGE
-          title: _getTitle(activityModel.title),
+          title: _getTitle(activityModel.title, fontSize: 20),
           leading: _getImage(activityModel.imageUrl),
 
 
@@ -93,8 +93,8 @@ Widget activityPageDisplay(
       ),
     );
 
-AutoSizeText _getTitle(String title) =>
-    AutoSizeText(title, style: TextStyle(fontSize: 50.0), maxLines: 1);
+AutoSizeText _getTitle(String title, {double fontSize = 50}) =>
+    AutoSizeText(title, style: TextStyle(fontSize: fontSize), maxLines: 1);
 
 AutoSizeText _getDate(String date) =>
     AutoSizeText(date, style: TextStyle(fontSize: 20.0), maxLines: 1);
@@ -121,7 +121,6 @@ Widget _getImage(String url, {double width = 75, double height = 75}) {
   return Container(
     width: width,
     height: height,
-
     child: Image.network(
       url,
       errorBuilder:

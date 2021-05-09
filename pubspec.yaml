@@ -17,6 +17,8 @@ dependencies:
   auto_size_text: ^2.1.0
   cached_network_image: ^3.0.0
   intl: ^0.17.0
+  random_date: ^0.0.5
+  ultimate_data_generator: ^1.0.0
 
 dev_dependencies:
   flutter_test:
