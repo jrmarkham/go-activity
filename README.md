@@ -1,5 +1,9 @@
 # Go Activity App 
 
+# Installing and running the project: 
+This is a straight Flutter project build with a few packages. You should 
+be able to clone the project and run it without any extra steps. It is designed 
+for mobile: So it runs on iOS simulators and android emulators. You can run it in Chrome but the images wont't load.
 
 # comments
 
@@ -20,6 +24,7 @@ I’d like to comment upon what I would do next if this app was a real project. 
 9. add a proper design to app that looks nice
 10. organize the code into more globals for device sizes, style elements and universal widgets and classes
 11. Add more unit / widget tests
+12. Update for a web version. 
     
 
 # Go Flutter Technical Test
