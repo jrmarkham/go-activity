@@ -23,6 +23,7 @@ I’d like to comment upon what I would do next if this app was a real project. 
     
 
 #Go Flutter Technical Test
+
 The following is a vague description of our vision for Go that is meant to both confound and inspire you:
 
 Imagine an app that helps you get off your device. No more likes, no more FOMO, no more isolation and endless content holes. No more loneliness!
