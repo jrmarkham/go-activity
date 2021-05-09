@@ -1,6 +1,27 @@
 # Go Activity App 
 
-Go Flutter Technical Test
+
+# comments
+
+Activities Project
+
+I added code comments to the core_app.dart file. Most of the rest of the code is very modular and doesn’t require explanation; obvious in a real app on a team some notes would be added.
+
+I’d like to comment upon what I would do next if this app was a real project. These are not in any kind of priority order.
+
+1. Add data picker for the activity date
+2. Add a location map and create a more detailed location ui. Use coordinates and add search feature via names and zip codes. etc…
+3. Do more validation on different data values types.
+4. create an image picker to use device images and or the user's camera 
+5. add image editor for those images
+6. add a better image url checker and error checker
+7. add a help section or pop up alert w/ hints
+8. save data somewhere
+9. add a proper design to app that looks nice
+10. organize the code into more globals for device sizes, style elements and universal widgets and classes
+    
+
+#Go Flutter Technical Test
 The following is a vague description of our vision for Go that is meant to both confound and inspire you:
 
 Imagine an app that helps you get off your device. No more likes, no more FOMO, no more isolation and endless content holes. No more loneliness!
