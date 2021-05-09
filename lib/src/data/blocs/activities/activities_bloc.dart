@@ -28,7 +28,7 @@ class ActivitiesBloc extends Bloc<ActivitiesBlocEvent, ActivitiesBlocState> {
       yield ActivitiesBlocStateLoading(state.activities);
       final List<ActivityModel> list  = state.activities;
       list.add(event.activity);
-      yield ActivitiesBlocStateLoaded(list);
+      yield ActivitiesBlocStateLoaded(list, idx: list.length -1);
     }
 
     if(event is ActivitiesBlocEventRemove) {

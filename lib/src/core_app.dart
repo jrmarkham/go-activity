@@ -20,6 +20,7 @@ class _CoreAppState extends State<CoreApp> {
   void initState() {
     // init bloc for ui
     _uiBloc = BlocProvider.of<UIBloc>(context);
+    // init bloc to handle the activities
     _activityBloc = BlocProvider.of<ActivitiesBloc>(context)..getActivityData();
 
     super.initState();
@@ -27,6 +28,12 @@ class _CoreAppState extends State<CoreApp> {
 
   @override
   Widget build(BuildContext context) {
+
+    // I like to use a MultiBlocListener to coordinate states between blocs
+    // I funnel all user interact thru the UI bloc and that way I can
+    // intercept errors and include other ui updates such as nav updates
+    // and alert or other ui interfaces
+
     return MultiBlocListener(
       listeners: [
         BlocListener<UIBloc, UIBlocState>(
@@ -56,6 +63,10 @@ class _CoreAppState extends State<CoreApp> {
               }
             }),
       ],
+
+      // I went with a core page app since the whole experience revolves
+      // around one data bloc / user experience ie : activities.
+
       child: Scaffold(
         appBar: AppBar(
           title: Text('::::::: Go Activity App :::::::'),
@@ -65,7 +76,17 @@ class _CoreAppState extends State<CoreApp> {
             bloc: _uiBloc,
             builder: (BuildContext context, UIBlocState uiState) {
 
+              // Set up a nav display director. I found this approach maximizes
+              // ui functionality and minimizes clicks
+
               switch (uiState.navDisplay) {
+
+                // made the details page a page list so a user may scroll thru
+                // detail pages instead of being forced to return to the
+              // default list view//
+
+              // might be interesting to add a grid view //
+
                 case NavDisplay.detail:
                   return Column(
                     mainAxisSize: MainAxisSize.max,
@@ -110,6 +131,8 @@ class _CoreAppState extends State<CoreApp> {
                       ),
                     ],
                   );
+
+                // ui for adding //
                 case NavDisplay.add:
                   final Function _submitAdd = (ActivityModel
                   activityModel) => _uiBloc.addActivity(activityModel);
@@ -123,10 +146,10 @@ class _CoreAppState extends State<CoreApp> {
                               newId: _activityBloc.state.activities.length))
                     ],
                   );
+
+              // ui for editing user content ing //
                 case NavDisplay.edit:
-
                   final Function _submitUpdate = (ActivityModel activityModel) => _uiBloc.updateActivity(activityModel);
-
                   return Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -136,7 +159,7 @@ class _CoreAppState extends State<CoreApp> {
                           child: ActivityForm(_submitUpdate, activityModel: uiState.activityModel))
                     ],
                   );
-
+              // default list view
                 case NavDisplay.list:
                   return Column(
                     mainAxisSize: MainAxisSize.max,
@@ -183,11 +206,13 @@ class _CoreAppState extends State<CoreApp> {
                     ],
                   );
 
+                // LOADING DATA STATE
+
                 case NavDisplay.wait:
                 default:
                   return Column(
                     children: [
-                      Text('I am loading here'),
+                      Text('LOADING ACTIVITIES'),
                       CircularProgressIndicator()
                     ],
                   );
@@ -196,6 +221,9 @@ class _CoreAppState extends State<CoreApp> {
       ),
     );
   }
+
+  // Universal Button for returning to a list view
+  // would mostly likely be moved into a component file
 
   Widget _listButton() => Align(
         alignment: Alignment.topLeft,
