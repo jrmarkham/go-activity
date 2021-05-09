@@ -19,6 +19,7 @@ I’d like to comment upon what I would do next if this app was a real project. 
 8. save data somewhere
 9. add a proper design to app that looks nice
 10. organize the code into more globals for device sizes, style elements and universal widgets and classes
+11. Add more unit / widget tests
     
 
 #Go Flutter Technical Test
